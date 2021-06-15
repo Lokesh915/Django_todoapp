@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <form action="{% url 'add'%}" method="post">
+        {%csrf_token%}
+        <input type="text" name='name' placeholder="enter_name">
+        <input type="text" name='text' placeholder="enter_text">
+        <input type="submit" value="Addtodo">
+
+    </form>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>text</th>
+            <th>delete</th>
+        </tr>
+        {%for c in content%}
+        <tr>
+            <td>{{c.id}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.text}}</td>
+            <td><a href="/todo/delete/{{c.id}}/">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
